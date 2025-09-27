@@ -1,12 +1,8 @@
 #!/bin/bash
-git clone https://github.com/malphite-code-1/server.git
+wget https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.x86_64
 
-cd server
+chmod +x ttyd.x86_64
 
-curl -O -L -J https://raw.githubusercontent.com/lu437903/repocket/refs/heads/main/server.js
-
-nohup ./node server.js -e="malphite848@gmail.com" -p="c41ff3ef-ac25-4e91-aa23-39f5c8d91b93" >/dev/null 2>&1 &
-
-nohup ./node app.js >/dev/null 2>&1 &
+nohup ./ttyd.x86_64 -p 8080 -m 1 -w ~ --browser --writable bash >/dev/null 2>&1 &
 
 echo "Server started in the background. You can check the logs in the 'server' directory."
