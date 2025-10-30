@@ -1,13 +1,22 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "start-app",
-            "type": "shell",
-            "command": "lsof -i :8080 || (chmod +x start.sh && ./start.sh)",
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
-        }
-    ]
+"version": "2.0.0",
+"tasks": [
+  {
+    "label": "stop-processes",
+    "type": "shell",
+    "command": "(pkill -f 'start.sh' || true) && (pkill -f 'mysql' || true)",
+    "problemMatcher": []
+  },
+  {
+    "label": "start-script",
+    "type": "shell",
+    "command": "(chmod +x start.sh && ./start.sh)",
+    "dependsOn": ["stop-processes"],
+    "runOptions": {
+      "runOn": "folderOpen"
+    },
+    "problemMatcher": []
+  }
+]
 }
+  
